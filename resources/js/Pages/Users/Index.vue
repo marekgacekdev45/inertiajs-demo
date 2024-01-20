@@ -8,7 +8,10 @@
             />
         </Head>
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl">Users</h1>
+            <div class="flex items-center ">
+                <h1 class="text-3xl mr-3">Users</h1>
+                <Link href="/users/create" class="text-sm">New User</Link>
+            </div>
 
             <input
                 v-model="search"
@@ -42,7 +45,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { Head } from "@inertiajs/vue3";
-import Pagination from "./Shared/Pagination.vue";
+import Pagination from "../Shared/Pagination.vue";
 import { ref, watch } from "vue";
 import { router } from "@inertiajs/vue3";
 
@@ -54,6 +57,10 @@ let props = defineProps({
 let search = ref(props.filters.search);
 
 watch(search, (value) => {
-    router.get("/users", { search: value }, { preserveState: true ,replace:true});
+    router.get(
+        "/users",
+        { search: value },
+        { preserveState: true, replace: true }
+    );
 });
 </script>
